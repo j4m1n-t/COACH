@@ -40,46 +40,22 @@ COACH currently supports TOML, YAML, and CUE formats for playbooks. The format w
 
 ### Example Playbook (TOML)
     [playbook]
-    name = "Example Playbook"
+    name = "Example Playbook for Windows"
 
     [tasks]
     [tasks.task1]
-    name = "Update and Upgrade"
-    command = "sudo apt-get update && sudo apt-get upgrade -y"
+    name = "Update Windows"
+    command = "Start-Process powershell -ArgumentList 'Install-Module PSWindowsUpdate -Force' -Verb RunAs; Import-Module PSWindowsUpdate; Get-WindowsUpdate -Install -AcceptAll -AutoReboot"
 
     [tasks.task2]
-    name = "Install NGINX"
-    command = "sudo apt-get install nginx -y"
+    name = "Install Chocolatey"
+    command = "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
 
-### Example Playbook (YAML)
-    playbook:
-    name: "Example Playbook"
+    [tasks.task3]
+    name = "Install Google Chrome"
+    command = "choco install googlechrome -y"
 
-    tasks:
-    task1:
-        name: "Update and Upgrade"
-        command: "sudo apt-get update && sudo apt-get upgrade -y"
-
-    task2:
-        name: "Install NGINX"
-        command: "sudo apt-get install nginx -y"
-
-### Example Playbook (CUE)
-    playbook: {
-        name: "Example Playbook"
-
-        tasks: {
-            task1: {
-                name: "Update and Upgrade"
-                command: "sudo apt-get update && sudo apt-get upgrade -y"
-            }
-
-            task2: {
-                name: "Install NGINX"
-                command: "sudo apt-get install nginx -y"
-            }
-        }
-    }
+For more examples see <a href="https://github.com/j4m1n-t/COACH/examples">examples</a>. 
 
 ### Contributing
 
