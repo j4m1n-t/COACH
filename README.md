@@ -95,7 +95,7 @@ COACH is in the early stages of development, and contributions are welcome! Here
 
 ### Issues
 
-If you encounter any issues, please report them in the <a href="www.github.com/j4m1n-t/coach/issues">issue tracker</a>.
+If you encounter any issues, please report them in the <a href="www.github.com/j4m1n-t/COACH/issues">issue tracker</a>.
 
 ### Roadmap
 
@@ -107,7 +107,7 @@ If you encounter any issues, please report them in the <a href="www.github.com/j
 
 ### License
 
-This project is licensed under the MIT License. See the <a href="www.github.com/j4m1n-t/coach/license">LICENSE</a> file for details.
+This project is licensed under the MIT License. See the <a href="https://github.com/j4m1n-t/COACH/blob/master/LICENSE">LICENSE</a> file for details.
 
 ### Contact
 
