@@ -55,7 +55,7 @@ COACH currently supports TOML, YAML, and CUE formats for playbooks. The format w
     name = "Install Google Chrome"
     command = "choco install googlechrome -y"
 
-For more examples see <a href="https://github.com/j4m1n-t/COACH/examples">examples</a>. 
+For more examples see <a href="https://github.com/j4m1n-t/COACH/tree/master/examples">examples</a>. 
 
 ### Contributing
 
