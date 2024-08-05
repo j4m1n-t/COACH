@@ -1,7 +1,7 @@
 use crate::actions::auth::ADAuth;
 use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
+pub fn get_perms() -> Result<(), Box<dyn Error>> {
     let mut ad_auth = ADAuth::new(
         "ldap://your_domain_controller:389",
         "CN=BindUser,OU=ServiceAccounts,DC=yourdomain,DC=com",

@@ -1,8 +1,8 @@
-// src/network/connection.rs
 use std::net::TcpStream;
 use ssh2::Session;
 use query_wmi::WMIConnection;
 use query_wmi::COMLibrary;
+use reqwest::Client;
 
 pub enum Connection {
     Tcp(TcpStream),
@@ -30,6 +30,16 @@ pub fn establish_connection(host: &str, protocol: &str) -> Result<Connection, Bo
             let com_con = COMLibrary::new()?;
             let wmi_con = WMIConnection::new(com_con.into())?;
             Ok(Connection::Wmi(wmi_con))
+        },
+        "http" => {
+            let client = Client::builder().build()?;
+            Ok(Connection::Http(client))
+        },
+        "https" => {
+            let client = Client::builder()
+                .use_rustls_tls()
+                .build()?;
+            Ok(Connection::Https(client))
         },
         // Add more protocols as needed
         _ => Err("Unsupported protocol".into()),

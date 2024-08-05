@@ -3,6 +3,7 @@ mod config;
 mod actions;
 mod utils;
 mod network;
+
 use crate::network::connection::Connection;
 use crate::config::Task;
 
@@ -27,12 +28,21 @@ fn execute_tasks(connection: &mut Connection, tasks: &[Task]) -> Result<(), Box<
                     .unwrap_or_default();
                 actions::system_ops::execute_system_command(command, &args)?;
             },
+            "execute_wmi_query" => {
+                let query = task.params.get("wmi").and_then(|v| v.as_str()).ok_or("Missing 'query' parameter")?;
+                if let Connection::Wmi(ref wmi_con) = *connection {
+                    actions::system_ops::execute_wmi_query(wmi_con, query)?;
+                } else {
+                    return Err("Connection is not a WMI connection".into());
+                }
+            },
             // Add more action types as needed
             _ => return Err(format!("Unknown action: {}", task.action).into()),
         }
     }
     Ok(())
 }
+
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = cli::parse_args();
@@ -41,7 +51,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let targets = if let Some(target_file) = args.target_file {
         utils::load_targets(&target_file)?
     } else {
-        vec![format!("{}:{}", args.host.unwrap(), args.port.unwrap())]
+        vec![format!("{}:{}", args.target.unwrap(), args.port.unwrap())]
     };
 
     for target in targets {
