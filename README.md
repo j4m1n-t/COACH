@@ -95,7 +95,7 @@ COACH is in the early stages of development, and contributions are welcome! Here
 
 ### Issues
 
-If you encounter any issues, please report them in the <a href="www.github.com/j4m1n-t/COACH/issues">issue tracker</a>.
+If you encounter any issues, please report them in the <a href="https://github.com/j4m1n-t/COACH/issues">issue tracker</a>.
 
 ### Roadmap
 
